@@ -1,17 +1,67 @@
 package com.tanco;
 
-//TIP 코드를 <b>실행</b>하려면 <shortcut actionId="Run"/>을(를) 누르거나
-// 에디터 여백에 있는 <icon src="AllIcons.Actions.Execute"/> 아이콘을 클릭하세요.
+import com.tanco.dao.BookDAO;
+import com.tanco.dao.BorrowDAO;
+import com.tanco.dao.StudentDAO;
+import com.tanco.dto.Book;
+import com.tanco.dto.Borrow;
+import com.tanco.dto.Student;
+
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP 캐럿을 강조 표시된 텍스트에 놓고 <shortcut actionId="ShowIntentionActions"/>을(를) 누르면
-        // IntelliJ IDEA이(가) 수정을 제안하는 것을 확인할 수 있습니다.
-        System.out.printf("Hello and welcome!");
+        StudentDAO studentDAO = new StudentDAO();
+        // addStudent 테스트
+//        Student student = new Student("티모", "90230005");
+//        studentDAO.addStudent(student);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP <shortcut actionId="Debug"/>을(를) 눌러 코드 디버그를 시작하세요. 1개의 <icon src="AllIcons.Debugger.Db_set_breakpoint"/> 중단점을 설정해 드렸습니다
-            // 언제든 <shortcut actionId="ToggleLineBreakpoint"/>을(를) 눌러 중단점을 더 추가할 수 있습니다.
-            System.out.println("i = " + i);
+        // getAllStudent 테스트
+//        List<Student> studentList = studentDAO.getAllStudent();
+//        for (Student student : studentList){
+//            System.out.println(student);
+//        }
+
+        // login
+//        Student student = studentDAO.getStudentByStudentId("20230002");
+//        if (student != null){
+//            System.out.println(student);
+//        } else {
+//            System.out.println("존재하지 않는 학생입니다");
+//        }
+
+        BookDAO bookDAO = new BookDAO();
+        // getAllBooks
+//        List<Book> bookList = bookDAO.getAllBooks();
+//        for (Book book : bookList){
+//            System.out.println(book);
+//        }
+
+        // searchBooksByTitle
+//        List<Book> bookList = bookDAO.searchBooksByTitle("입문");
+//        for (Book book : bookList){
+//            System.out.println(book);
+//        }
+
+        //addBook
+//        Book book = new Book("테스트책2", "저자", "한빛미디어", 2026, "9788968481239");
+
+//        Book book = Book.builder()
+//                .title("테스트책2")
+//                .author("저자")
+//                .publisher("한빛미디어")
+//                .publicationYear(2026)
+//                .isbn("9788968481239")
+//                .build();
+
+//        bookDAO.addBook(book);
+
+        BorrowDAO borrowDAO = new BorrowDAO();
+
+        // getBorrowedBooks
+        List<Borrow> borrowList = borrowDAO.getBorrowedBooks();
+        for (Borrow borrow : borrowList){
+            System.out.println(borrow);
         }
     }
 }
