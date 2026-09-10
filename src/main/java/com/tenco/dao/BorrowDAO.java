@@ -1,7 +1,7 @@
-package com.tanco.dao;
+package com.tenco.dao;
 
-import com.tanco.dto.Borrow;
-import com.tanco.util.DatabaseUtil;
+import com.tenco.dto.Borrow;
+import com.tenco.util.DatabaseUtil;
 
 import java.sql.*;
 import java.time.LocalDate;

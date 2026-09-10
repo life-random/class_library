@@ -1,9 +1,9 @@
-package com.tanco.util;
+package com.tenco.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DatabaseUtil {
+public class DatabaseUtil2 {
 
     private static final String URL = "jdbc:mysql://localhost:3306/library?serverTimezone=Asia/Seoul";
     private static final String DB_USER = System.getenv("DB_USER");

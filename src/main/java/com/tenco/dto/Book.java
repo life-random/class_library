@@ -1,4 +1,4 @@
-package com.tanco.dto;
+package com.tenco.dto;
 
 //id int auto_increment primary key,
 //title varchar(255) not null,

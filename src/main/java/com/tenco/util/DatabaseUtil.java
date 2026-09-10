@@ -1,0 +1,48 @@
+package com.tenco.util;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+// 코드 수정 [HikariCp] 커넥션 풀을 관리하는 클래스
+public class DatabaseUtil {
+
+    private static final String URL = "jdbc:mysql://localhost:3306/library?serverTimezone=Asia/Seoul";
+    private static final String DB_USER = System.getenv("DB_USER");
+    private static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
+    private static final HikariDataSource DATA_SOURCE;
+
+    // static 블록은 이 클래스가 처음 사용되는 순간 딱 한 번 실행됨
+    // 즉, 첫 getConnection() 호출 시점에 풀이 만들어지고, 그 뒤로는 재사용 합니다
+    static {
+        HikariConfig config = new HikariConfig();
+
+        // 1. 기본 연결 정보 설정
+        config.setJdbcUrl(URL);
+        config.setUsername(DB_USER);
+        config.setPassword(DB_PASSWORD);
+
+        // 2. 커넥션 풀 크기 설정
+        config.setMaximumPoolSize(10);  // 동기에 최대 10개 연결 유지 (스프링 부트 기본 값)
+        config.setMinimumIdle(5);       // 요청이 없어도 최소 5개 준비 상태로 유지
+
+        // 3. 풀이 가득 찼을 때 빈 연결을 기다리는 최대 시간 (밀리초)
+        config.setConnectionTimeout(3000);
+
+        // 4. 풀 생성(이 시점에 실제 DB 연결 객체 N개가 만들어 진다)
+        DATA_SOURCE = new HikariDataSource(config);
+    }
+
+    public static Connection getConnection() throws SQLException {
+        return DATA_SOURCE.getConnection();
+    }
+
+    // 프로그램 종료 시 풀 전체를 정리
+    public static void close(){
+        if (!DATA_SOURCE.isClosed()){
+            DATA_SOURCE.close();
+        }
+    }
+}

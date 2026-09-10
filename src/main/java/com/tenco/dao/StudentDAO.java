@@ -1,7 +1,7 @@
-package com.tanco.dao;
+package com.tenco.dao;
 
-import com.tanco.dto.Student;
-import com.tanco.util.DatabaseUtil;
+import com.tenco.dto.Student;
+import com.tenco.util.DatabaseUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
